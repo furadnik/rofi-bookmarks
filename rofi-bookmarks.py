@@ -22,6 +22,11 @@ def title_gen_full_path(path: Iterator[str], separator=' / ') -> str:
     return separator.join(filter(lambda x: x is not None, path))
 
 
+def title_gen_only_name(path: Iterator[str]) -> str:
+    """Generate full path."""
+    return list(filter(lambda x: x is not None, path))[-1]
+
+
 @contextmanager
 def temp_sqlite(path: Path | str) -> sqlite3.Connection:
     """Copy sqlite database to temporary location and connect to it there."""
@@ -117,5 +122,7 @@ if __name__ == "__main__":
         profile_path = default_profile_path() if args.profile is None else path_from_name(args.profile)
 
         print("\x00prompt\x1f ")  # change prompt
+        # write_rofi_input(get_bookmarks_from_db(profile_path), favicons_generator(profile_path),
+        #                  partial(title_gen_full_path, separator=args.separator), search_path=search_path)
         write_rofi_input(get_bookmarks_from_db(profile_path), favicons_generator(profile_path),
-                         partial(title_gen_full_path, separator=args.separator), search_path=search_path)
+                         title_gen_only_name, search_path=search_path)
