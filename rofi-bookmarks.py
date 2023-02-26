@@ -94,7 +94,7 @@ def write_rofi_input(bookmarks, favicons_gen, title_gen, search_path=[]):
         if t != 1:  # type one means bookmark
             continue
 
-        path_arr = reversed(parent_generator(index, by_id))
+        path_arr = reversed(list(parent_generator(index, by_id)))
 
         if all(name == next(path_arr) for name in search_path):
             path = title_gen(path_arr)
