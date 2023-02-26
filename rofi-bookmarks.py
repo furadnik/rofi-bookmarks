@@ -116,5 +116,5 @@ if __name__ == "__main__":
         profile_path = default_profile_path() if args.profile is None else path_from_name(args.profile)
 
         print("\x00prompt\x1f ")  # change prompt
-        bookmarks = get_bookmarks_from_db(profile_path)
-        write_rofi_input(bookmarks, title_gen_full_path, search_path=search_path)
+        write_rofi_input(get_bookmarks_from_db(profile_path), favicons_generator(profile_path),
+                         title_gen_full_path, search_path=search_path)
