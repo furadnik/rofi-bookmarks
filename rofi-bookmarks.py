@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Get bookmarks from firefox and print them in rofi readable format."""
 from typing import Iterator
+from functools import partial
 import sqlite3
 import subprocess
 from argparse import ArgumentParser
@@ -117,4 +118,4 @@ if __name__ == "__main__":
 
         print("\x00prompt\x1f ")  # change prompt
         write_rofi_input(get_bookmarks_from_db(profile_path), favicons_generator(profile_path),
-                         title_gen_full_path, search_path=search_path)
+                         partial(title_gen_full_path, separator=args.separator), search_path=search_path)
