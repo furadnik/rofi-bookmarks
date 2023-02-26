@@ -115,7 +115,7 @@ if __name__ == "__main__":
 
     if environ.get('ROFI_RETV') == '1':
         prof = [] if args.profile is None else ["-P", args.profile]
-        subprocess.Popen(["firefox", environ['ROFI_INFO']] + prof, close_fds=True,
+        subprocess.Popen(["firefox", environ['ROFI_INFO'], "--new-window"] + prof, close_fds=True,
                          start_new_session=True, stdout=subprocess.DEVNULL)
     else:
         search_path = [i for i in args.path.split('/') if i != '']
