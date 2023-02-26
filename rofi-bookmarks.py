@@ -19,7 +19,7 @@ firefox_dir = Path.home() / '.mozilla/firefox'
 
 def title_gen_full_path(path: Iterator[str], separator=' / ') -> str:
     """Generate full path."""
-    return separator.join(reversed(list(filter(lambda x: x is not None, path))))
+    return separator.join(filter(lambda x: x is not None, path))
 
 
 @contextmanager
